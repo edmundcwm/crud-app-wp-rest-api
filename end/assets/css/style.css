@@ -1,0 +1,53 @@
+/* GLOBAL -----------------*/
+html,
+body {
+    height: 100%;
+}
+
+.is-inactive {
+    display: none;
+}
+
+/* CONTAINER -----------------*/
+.uk-container-xsmall {
+    max-width: 400px;
+}
+
+/* LOGO -----------------*/
+.logo-wrapper {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    color: #1e87f0;
+}
+
+/* POST -----------------*/
+.post {
+    border: 1px solid #ddd;
+}
+
+/* USER PROFILE PICTURE -----------------*/
+.user-info__pic {
+    border: 1px solid;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #1e87f0;
+    color: #fff;
+    padding: 4px;
+}
+
+/* USER CONTRLOLS -----------------*/
+.user-controls__btn {
+    margin-right: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* INPUT -----------------*/
+.input-alert {
+    border-color: #f0506e;
+}
