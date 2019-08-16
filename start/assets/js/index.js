@@ -1,4 +1,4 @@
-const url         = 'http://localhost:8888/restapi/wp-json/wp/v2/posts';
+const url         = 'http://localhost:8888/restapi/wp-json/wp/v2/posts'; //this should be changed to your site
 const spinner     = '<img class="spinner" width="70" src="./assets/images/ajax-loader.gif" />';
 const body        = $('body');
 const fetchPost   = $('#fetch-post');
