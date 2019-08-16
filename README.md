@@ -15,3 +15,6 @@ The /start/ folder consists an incomplete index.js file inside /assets/js. There
 4. Insert AJAX call to **UPDATE** post via the WP REST API
 
 The /end/ folder consists of the completed index.js so feel free to refer to that if you are stuck
+
+### Note
+Remember to change  ``const url = ...`` in **line 1** to your site address
