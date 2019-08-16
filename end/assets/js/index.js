@@ -183,7 +183,7 @@ function updatePost() {
 
         //Save Post via WP REST API
         $.ajax({
-            method: 'POST',
+            method: 'PUT',
             data: postData,
             url: url + '/' + $(this).data('id'),    
             beforeSend: function(xhr) {
