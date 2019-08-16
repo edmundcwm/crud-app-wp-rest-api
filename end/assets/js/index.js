@@ -54,8 +54,13 @@ function fetchPosts() {
         url,
     })
     .done(function(response) {
-        posts = renderPost(response);
-        $('.post-wrapper').append(posts);
+        if ( ! response.length ) {
+            const message = '<p>No posts found</p>';
+            $('.post-wrapper').append(message);
+        } else {
+            posts = renderPost(response);
+            $('.post-wrapper').append(posts);
+        }
     })
     .fail(function(response) {
         //log error message if ajax call fails
