@@ -7,6 +7,7 @@ const form        = $('#post-submit-form');
 
 /* EVENT HANDLERS -------------------- */
 
+//handle character remaining counter
 body.on('input', '.post-content', handleInput)
 
 //Fetch posts
@@ -48,7 +49,10 @@ function fetchPosts() {
     //insert spinner
     wrapper.append(spinner);
 
-    //ajax call to retrieve posts
+    /********************************************
+     * TO-DO 1: Insert AJAX call to RETRIEVE post
+     * https://api.jquery.com/jquery.ajax/
+     ********************************************/
     $.ajax({
         method: 'GET',
         url,
@@ -98,6 +102,10 @@ function submitPost(e) {
         "status" : "publish"
     }
 
+    /******************************************
+     * TO-DO 2: Insert AJAX call to CREATE post
+     * https://api.jquery.com/jquery.ajax/
+     ******************************************/
     $.ajax({
         method: 'POST',
         data: postData,
@@ -140,6 +148,11 @@ function deletePost() {
 
     if ( confirmation ) {
         const postID = $(this).data('id');
+
+        /******************************************
+         * TO-DO 3: Insert AJAX call to DELETE post
+         * https://api.jquery.com/jquery.ajax/
+         ******************************************/
         $.ajax({
             method: 'DELETE',
             url: url + '/' + postID,
@@ -175,6 +188,8 @@ function updatePost() {
             "content": newContentTextArea.val(),
         }
 
+        const postID = $(this).data('id');
+
         //cache the edit button
         const that = $(this);
         
@@ -186,7 +201,10 @@ function updatePost() {
         //disable textarea
         newContentTextArea.prop('disabled', true);
 
-        //Save Post via WP REST API
+        /******************************************
+         * TO-DO 4: Insert AJAX call to UPDATE post
+         * https://api.jquery.com/jquery.ajax/
+         ******************************************/
         $.ajax({
             method: 'PUT',
             data: postData,
