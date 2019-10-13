@@ -22,12 +22,15 @@ Also, the plugin [**WP Basic Auth**](https://github.com/WP-API/Basic-Auth) is re
 Enjoy **REST**ing!
 
 ### Note
-If you have issues with the creating, updating and deleting of posts, open up your developers console and see what the error message is. Should you see something like 'Sorry, you are not allowed to create new posts', try inserting the following to your **.htaccess** file, right below ``RewriteEngine On``
-```
-RewriteCond %{HTTP:Authorization} ^(.*)
-RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
-```
-Read [here](https://github.com/WP-API/Basic-Auth/issues/35) for more info.
+If you have issues with the creating, updating and deleting of posts, here are some possible solutions:
+1. **Logout of your WP site** or open the App in an incognito window/different browser.
+   This is an issue with the **WP Basic Auth** plugin. More [info](https://github.com/WP-API/WP-API/issues/2493#issuecomment-218716303).
+2. Add the following to your **.htaccess** file, right below ``RewriteEngine On``
+   ```
+   RewriteCond %{HTTP:Authorization} ^(.*)
+   RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+   ```
+   More [info](https://github.com/WP-API/Basic-Auth/issues/35).
 
 If you need help or want to report any bugs, please feel free to open up an issue!
 
