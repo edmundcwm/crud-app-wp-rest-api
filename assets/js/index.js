@@ -1,5 +1,4 @@
-//Replace the 'http://localhost:8888/restapi/' part with your URL
-const siteURL     = 'http://localhost:8888/restapi';
+const siteURL     = 'http://localhost:8888/restapi'; //Replace this with the url of your WP site
 const apiRoute    = '/wp-json/wp/v2/posts'; 
 const spinner     = '<img class="spinner" width="70" src="./assets/images/ajax-loader.gif" />';
 const body        = $('body');
