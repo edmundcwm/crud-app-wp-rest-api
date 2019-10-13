@@ -1,5 +1,6 @@
 //Replace the 'http://localhost:8888/restapi/' part with your URL
-const url         = 'http://localhost:8888/restapi/wp-json/wp/v2/posts'; 
+const siteURL     = 'http://localhost:8888/restapi';
+const apiRoute    = '/wp-json/wp/v2/posts'; 
 const spinner     = '<img class="spinner" width="70" src="./assets/images/ajax-loader.gif" />';
 const body        = $('body');
 const fetchPost   = $('#fetch-post');
@@ -54,7 +55,7 @@ function fetchPosts() {
 
     $.ajax({
         method: 'GET',
-        url,
+        url: siteURL + apiRoute,
     })
     .done(function(response) {
         if ( ! response.length ) {
@@ -106,7 +107,7 @@ function submitPost(e) {
     $.ajax({
         method: 'POST',
         data: postData,
-        url,
+        url: siteURL + apiRoute,
         beforeSend: function ( xhr ) {
             xhr.setRequestHeader( 'Authorization', 'Basic ' + window.btoa('admin:password') ); //replace 'admin:password' with your own credentials
         },
@@ -150,7 +151,7 @@ function deletePost() {
 
         $.ajax({
             method: 'DELETE',
-            url: url + '/' + postID,
+            url: siteURL + apiRoute + '/' + postID,
             beforeSend: function(xhr) {
                 xhr.setRequestHeader( 'Authorization', 'Basic ' + window.btoa('admin:password') ); //replace 'admin:password' with your own credentials
             }
@@ -201,7 +202,7 @@ function updatePost() {
         $.ajax({
             method: 'PUT',
             data: postData,
-            url: url + '/' + $(this).data('id'),    
+            url: siteURL + apiRoute + '/' + $(this).data('id'),    
             beforeSend: function(xhr) {
                 xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa('admin:password')); //replace 'admin:password' with your own credentials
             }
