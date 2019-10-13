@@ -1,4 +1,5 @@
-const url         = 'http://localhost:8888/restapi/wp-json/wp/v2/posts'; //this should be changed to your site
+//Replace the 'http://localhost:8888/restapi/' part with your URL
+const url         = 'http://localhost:8888/restapi/wp-json/wp/v2/posts'; 
 const spinner     = '<img class="spinner" width="70" src="./assets/images/ajax-loader.gif" />';
 const body        = $('body');
 const fetchPost   = $('#fetch-post');
@@ -39,7 +40,9 @@ function handleInput() {
     $(this).siblings('.content-counter').html(`${remaining} characters remaining`);
 }
 
-//fetch all posts via the WP REST API
+/******************************************
+ * GET ALL POSTS
+ ******************************************/
 function fetchPosts() {
     const wrapper = $('.post-wrapper');
     
@@ -49,10 +52,6 @@ function fetchPosts() {
     //insert spinner
     wrapper.append(spinner);
 
-    /********************************************
-     * TO-DO 1: Insert AJAX call to RETRIEVE post
-     * https://api.jquery.com/jquery.ajax/
-     ********************************************/
     $.ajax({
         method: 'GET',
         url,
@@ -76,7 +75,9 @@ function fetchPosts() {
     })
 }
 
-//submit a new post via the WP REST API
+/******************************************
+ * SUBMIT POST
+ ******************************************/
 function submitPost(e) {
     e.preventDefault();
 
@@ -101,17 +102,13 @@ function submitPost(e) {
         "content" : postContent.val(),
         "status" : "publish"
     }
-
-    /******************************************
-     * TO-DO 2: Insert AJAX call to CREATE post
-     * https://api.jquery.com/jquery.ajax/
-     ******************************************/
+    
     $.ajax({
         method: 'POST',
         data: postData,
         url,
         beforeSend: function ( xhr ) {
-            xhr.setRequestHeader( 'Authorization', 'Basic ' + window.btoa('admin:password') );
+            xhr.setRequestHeader( 'Authorization', 'Basic ' + window.btoa('admin:password') ); //replace 'admin:password' with your own credentials
         },
     })
     .done(function(response) {
@@ -142,22 +139,20 @@ function submitPost(e) {
     })
 }
 
-//delete post via the WP REST API
+/******************************************
+ * DELETE POST
+ ******************************************/
 function deletePost() {
     const confirmation = confirm('Are you sure you want to delete this post?');
 
     if ( confirmation ) {
         const postID = $(this).data('id');
 
-        /******************************************
-         * TO-DO 3: Insert AJAX call to DELETE post
-         * https://api.jquery.com/jquery.ajax/
-         ******************************************/
         $.ajax({
             method: 'DELETE',
             url: url + '/' + postID,
             beforeSend: function(xhr) {
-                xhr.setRequestHeader( 'Authorization', 'Basic ' + window.btoa('admin:password') );
+                xhr.setRequestHeader( 'Authorization', 'Basic ' + window.btoa('admin:password') ); //replace 'admin:password' with your own credentials
             }
         })
         .done(function(response) {
@@ -169,7 +164,9 @@ function deletePost() {
     }
 }
 
-//update post via the WP REST API
+/******************************************
+ * UPDATE POST
+ ******************************************/
 function updatePost() {
     if ( ! $(this).hasClass('edit-mode') ) {
         //Edit mode
@@ -201,16 +198,12 @@ function updatePost() {
         //disable textarea
         newContentTextArea.prop('disabled', true);
 
-        /******************************************
-         * TO-DO 4: Insert AJAX call to UPDATE post
-         * https://api.jquery.com/jquery.ajax/
-         ******************************************/
         $.ajax({
             method: 'PUT',
             data: postData,
             url: url + '/' + $(this).data('id'),    
             beforeSend: function(xhr) {
-                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa('admin:password'));
+                xhr.setRequestHeader('Authorization', 'Basic ' + window.btoa('admin:password')); //replace 'admin:password' with your own credentials
             }
         })
         .done(function(response) {    
