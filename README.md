@@ -29,4 +29,6 @@ RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
 ```
 Read [here](https://github.com/WP-API/Basic-Auth/issues/35) for more info.
 
+If you need help or want to report any bugs, please feel free to open up an issue!
+
 _Last tested with WP v5.2.3_
