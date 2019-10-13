@@ -1,20 +1,32 @@
-# **A Micro Blogging App powered by the WP REST API**
+# **A Simple CRUD app using the WordPress REST API**
 
 ### Description 
-This is an example of utilizing the WP REST API to create an interactive application. It allows you to:
+This is an example of utilizing the WP REST API to create an interactive application. Without logging into the wp-admin, you will be able to:
 1. Create a post
 2. Update a post
 3. Delete a post
 4. Display all posts
 
-### Exercise
-The /start/ folder consists an incomplete index.js file inside /assets/js. There are 4 TO-DO items: 
-1. Insert AJAX call to **RETRIEVE** all posts via the WP REST API
-2. Insert AJAX call to **CREATE** post via the WP REST API
-3. Insert AJAX call to **DELETE** post via the WP REST API
-4. Insert AJAX call to **UPDATE** post via the WP REST API
+Since this is a front-end application, you would also need a WordPress installation to operate as the back-end/data-store. That is where all posts will be retrieved from.
 
-The /end/ folder consists of the completed index.js so feel free to refer to that if you are stuck
+Also, the plugin [**WP Basic Auth**](https://github.com/WP-API/Basic-Auth) is required to allow you to authenticate via the frontend and perform POST, PUT and DELETE requests. So make sure that is installed to your WP site.
+
+### How to
+1. Download the project files from this repo
+2. Change the following variables in the **/assets/js/index.js** file
+   * ``const url = ...`` in **line 2**. This should be the URL of your WP site.
+   * ``window.btoa('admin:password')`` in **line 111, 155 and 206**. This should be the username and password of your WP site.
+3. Install and activate the [**WP Basic Auth**](https://github.com/WP-API/Basic-Auth) plugin
+4. Fire up **index.html** in your browser
+
+Enjoy **REST**ing!
 
 ### Note
-Remember to change  ``const url = ...`` in **line 1** to your site address
+If you have issues with the creating, updating and deleting of posts, open up your developers console and see what the error message is. Should you see something like 'Sorry, you are not allowed to create new posts', try inserting the following to your **.htaccess** file, right below ``RewriteEngine On``
+```
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+```
+Read [here](https://github.com/WP-API/Basic-Auth/issues/35) for more info.
+
+_Last tested with WP v5.2.3_
